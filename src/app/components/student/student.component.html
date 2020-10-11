@@ -1,0 +1,118 @@
+<div class="container w-100">
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <h3><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Add new student </h3>
+            <br />
+
+            <div class="form-group row">
+                <label><b>ID : </b></label>
+                <input type="text" class="form-control" [(ngModel)]="_id" name="_id" required>
+            </div>
+
+            <div class="form-group row">
+                <label><b>Name : </b></label>
+                <input type="text" class="form-control" [(ngModel)]="studentname" name="studentname" required>
+            </div>
+            <br />
+
+            <h5>Subjects Marks &nbsp;<i class="fa fa-arrow-down" aria-hidden="true"></i></h5><br />
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Mathematics : </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="maths" name="maths" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Science : </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="science" name="science" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">English : </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="english" name="english" required>
+                </div>
+            </div>
+            <br />
+
+            <div class="btn-group btn-block" role="group" *ngIf="!editMode" aria-label="Basic example">
+                <button type="submit" class="btn btn-primary" (click)="addDetail()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;&nbsp;Add</button>
+                <button type="reset" class="btn btn-danger" value="Reset" (click)="reset()">
+                    <i class="fa fa-eraser" aria-hidden="true"></i> &nbsp;&nbsp;Clear</button>
+            </div>
+
+            <button class="btn btn-warning btn-block" type="submit" *ngIf="editMode" (click)="udpateDetail()">
+                <i class="fa fa-plane" aria-hidden="true"></i> &nbsp;&nbsp;Update
+            </button>
+        </div>
+
+        <div class="col-md-1">
+            <!-- Gap between columns -->
+        </div>
+
+        <div class="col-md-8">
+            <br />
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h3><i class="fa fa-list-ol" aria-hidden="true"></i> &nbsp; Details</h3>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-success" (click)="goToPage('highmarks')">
+                        <b>Highest Marks &nbsp;</b>
+                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <br />
+
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" rowspan="2">#</th>
+                        <th scope="col" rowspan="2">ID</th>
+                        <th scope="col" rowspan="2">Name</th>
+                        <th scope="col" colspan=3>Marks</th>
+                        <th scope="col" rowspan="2">Total</th>
+                        <th scope="col" rowspan="2">Action</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Maths</th>
+                        <th scope="row">Science</th>
+                        <th scope="row">English</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let detail of detailList; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{detail._id}}</td>
+                        <td>{{detail.studentname}} </td>
+                        <td>{{detail.maths}}</td>
+                        <td>{{detail.science}}</td>
+                        <td>{{detail.english}}</td>
+                        <td>{{detail.totmarks}}</td>
+                        <td>
+                            <button class="btn btn-info btn-sm" (click)="editDeail(detail)" data-toggle="tooltip"
+                                data-placement="bottom" title="Edit">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-danger btn-sm" (click)="deleteDetail(detail._id)"
+                                data-toggle="tooltip" data-placement="bottom" title="Delete">
+                                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
